@@ -4,12 +4,13 @@
 #
 Name     : perl-Business-ISBN
 Version  : 3.004
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISBN-3.004.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISBN-3.004.tar.gz
 Summary  : 'work with International Standard Book Numbers'
 Group    : Development/Tools
 License  : Artistic-2.0
+Requires: perl-Business-ISBN-license = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Business::ISBN::Data)
 
@@ -19,10 +20,18 @@ See the tests in the t/ directory for examples until I add some more.
 %package dev
 Summary: dev components for the perl-Business-ISBN package.
 Group: Development
-Provides: perl-Business-ISBN-devel
+Provides: perl-Business-ISBN-devel = %{version}-%{release}
 
 %description dev
 dev components for the perl-Business-ISBN package.
+
+
+%package license
+Summary: license components for the perl-Business-ISBN package.
+Group: Default
+
+%description license
+license components for the perl-Business-ISBN package.
 
 
 %prep
@@ -50,10 +59,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Business-ISBN
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Business-ISBN/LICENSE
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -62,12 +73,16 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Business/ISBN.pm
-/usr/lib/perl5/site_perl/5.26.1/Business/ISBN10.pm
-/usr/lib/perl5/site_perl/5.26.1/Business/ISBN13.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Business/ISBN.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Business/ISBN10.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Business/ISBN13.pm
 
 %files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Business::ISBN.3
 /usr/share/man/man3/Business::ISBN10.3
 /usr/share/man/man3/Business::ISBN13.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Business-ISBN/LICENSE
