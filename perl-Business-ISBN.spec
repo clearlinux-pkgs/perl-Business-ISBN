@@ -4,13 +4,14 @@
 #
 Name     : perl-Business-ISBN
 Version  : 3.004
-Release  : 9
+Release  : 10
 URL      : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISBN-3.004.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISBN-3.004.tar.gz
 Summary  : 'work with International Standard Book Numbers'
 Group    : Development/Tools
 License  : Artistic-2.0
 Requires: perl-Business-ISBN-license = %{version}-%{release}
+Requires: perl(Business::ISBN::Data)
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Business::ISBN::Data)
 
@@ -21,6 +22,7 @@ See the tests in the t/ directory for examples until I add some more.
 Summary: dev components for the perl-Business-ISBN package.
 Group: Development
 Provides: perl-Business-ISBN-devel = %{version}-%{release}
+Requires: perl-Business-ISBN = %{version}-%{release}
 
 %description dev
 dev components for the perl-Business-ISBN package.
@@ -41,7 +43,7 @@ license components for the perl-Business-ISBN package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -51,7 +53,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
