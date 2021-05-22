@@ -4,7 +4,7 @@
 #
 Name     : perl-Business-ISBN
 Version  : 3.006
-Release  : 17
+Release  : 18
 URL      : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISBN-3.006.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISBN-3.006.tar.gz
 Summary  : 'work with International Standard Book Numbers'
