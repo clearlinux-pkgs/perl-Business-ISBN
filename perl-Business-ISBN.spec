@@ -4,7 +4,7 @@
 #
 Name     : perl-Business-ISBN
 Version  : 3.007
-Release  : 23
+Release  : 24
 URL      : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISBN-3.007.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISBN-3.007.tar.gz
 Summary  : 'work with International Standard Book Numbers'
@@ -99,6 +99,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/Business/ISBN.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Business/ISBN10.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Business/ISBN13.pm
+/usr/lib/perl5/*
